@@ -3,18 +3,30 @@ from django.views.generic.base import View
 from rest_framework import views
 
 from django.urls import path
+from rest_framework import routers
 from .views import article_details, article_list
 
-from .views import ArticleList, ArticalDetails
+from .views import ArticleList, ArticalDetails, ArticleViewSet
+
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+
+
+router.register('articles', ArticleViewSet, basename='article')
 
 urlpatterns = [
+    path('', include(router.urls))
 
     # Function base Views
     # path('articles/', article_list, name='article'),
     # path('articles/<pk>', article_details, name='artical_details'),
 
     # Class Base views
-    path('articles/', ArticleList.as_view()),
-    path('articles/<int:id>', ArticalDetails.as_view())
+    # path('articles/', ArticleList.as_view()),
+    # path('articles/<int:id>', ArticalDetails.as_view())
+
+    # ClassbaseViewset
+
 
 ]
