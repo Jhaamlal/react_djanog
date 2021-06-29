@@ -6,7 +6,7 @@ from django.urls import path
 from rest_framework import routers
 from .views import article_details, article_list
 
-from .views import ArticleList, ArticalDetails, ArticleViewSet
+from .views import ArticleList, ArticalDetails, ArticleViewSet, UserViewSet
 
 from rest_framework.routers import DefaultRouter
 
@@ -14,9 +14,11 @@ router = DefaultRouter()
 
 
 router.register('articles', ArticleViewSet, basename='article')
+router.register('user', UserViewSet, basename='Users')
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('api/', include(router.urls))
+
 
     # Function base Views
     # path('articles/', article_list, name='article'),
